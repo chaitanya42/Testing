@@ -1,0 +1,32 @@
+#include <stdio.h>
+#include <stdint.h>
+#define MAX 5U
+uint8_t movingdata[]= {10,20,30,40,50,60,70,80,90};
+uint8_t sum = 0;
+uint8_t i = 0;
+uint8_t buffer[MAX] ={0};
+uint8_t avgfilter(uint8_t data)
+{
+    sum -= buffer[i];
+    buffer[i] = data;
+    sum += data;
+    i = (i+1)%MAX;
+   
+    return sum/MAX;
+    
+}
+
+int main()
+{
+ uint8_t value;
+ for (uint8_t j = 0; j < sizeof(movingdata) / sizeof(movingdata[0]); j++)
+    {
+        value = avgfilter(movingdata[j]);
+        printf("Moving Average after inserting %d: %d\n", movingdata[j], value);
+    }   
+    return 0;
+}
+
+3. "Resume Power-Up"
+
+Prompt: "Review my resume for [target position]. Here's my current experience: [paste experience]. Optimize my bullet points using strong action verbs and quantifiable achievements. Focus on [specific skills] that match the job description. Suggest improvements for formatting and keywords to pass ATS systems while maintaining a clean, professional layo
